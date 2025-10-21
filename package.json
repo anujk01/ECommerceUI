@@ -1,0 +1,23 @@
+{
+  "name": "ecommerceui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anujk01/ECommerceUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/anujk01/ECommerceUI/issues"
+  },
+  "homepage": "https://github.com/anujk01/ECommerceUI#readme"
+}

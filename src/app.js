@@ -2,7 +2,7 @@
 // change if your API is hosted elsewhere:
 const API_BASE = "https://localhost:7051/"; // <-- replace with your API URL (http/https)
 const LOGIN_PATH = "/api/auth/login";
-const PROFILE_PATH = "/api/profile/me";
+const PROFILE_PATH = "/api/user/addUser";
 
 const loginForm = document.getElementById("loginForm");
 const loginBtn = document.getElementById("loginBtn");

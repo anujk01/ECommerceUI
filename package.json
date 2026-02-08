@@ -4,10 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test"
-},
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anujk01/ECommerceUI.git"
@@ -15,9 +16,26 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/anujk01/ECommerceUI/issues"
   },
-  "homepage": "https://github.com/anujk01/ECommerceUI#readme"
+  "homepage": "https://github.com/anujk01/ECommerceUI#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.9.4",
+    "react-scripts": "^0.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

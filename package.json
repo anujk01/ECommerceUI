@@ -1,5 +1,5 @@
 {
-  "name": "project001-ui",
+  "name": "project001ui",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anujk01/project001.git"
+    "url": "git+https://github.com/anujk01/project001ui.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anujk01/project001/issues"
+    "url": "https://github.com/anujk01/project001ui/issues"
   },
   "dependencies": {
   "react": "^18.3.1",

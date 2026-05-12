@@ -1,5 +1,5 @@
 {
-  "name": "ecommerceui",
+  "name": "project001",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anujk01/ECommerceUI.git"
+    "url": "git+https://github.com/anujk01/project001.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/anujk01/ECommerceUI/issues"
+    "url": "https://github.com/anujk01/project001/issues"
   },
   "dependencies": {
   "react": "^18.3.1",

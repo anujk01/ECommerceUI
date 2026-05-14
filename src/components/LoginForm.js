@@ -16,21 +16,18 @@ function LoginForm() {
     setLoading(true);
 
     try {
-      // Corrected call: passing username and password as separate arguments
       const response = await login(username, password);
       console.log("Login response:", response);
       
-      // Save token to localStorage
       if (response && response.token) {
         localStorage.setItem("token", response.token);
-        // Redirect to dashboard using navigate
         navigate("/dashboard");
       } else {
-        setError("Invalid response from server.");
+        setError("Invalid response: Token missing from server.");
       }
     } catch (err) {
-      console.error("Login failed:", err);
-      setError("Login failed. Please check your credentials.");
+      console.error("Detailed login error:", err);
+      setError(`Error: ${err.message}`);
     } finally {
       setLoading(false);
     }

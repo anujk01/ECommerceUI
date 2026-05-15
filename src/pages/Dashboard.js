@@ -27,65 +27,65 @@ const Dashboard = () => {
 
 
   const greetingCards = [
-    { 
-      id: 1, 
-      text: "Click if you love me ❤️", 
-      icon: "💖", 
+    {
+      id: 1,
+      text: "Click if you love me ❤️",
+      icon: "💖",
       theme: "card-love",
       message: "I knew it! But just so you know, I love you infinitely more. ❤️",
       subtext: "You're my forever and always.",
-      actionText: "Step into the sanctuary of our love...",
-      mood: "happy"
+      actionText: "Step into our memory lane...",
+      startIndex: 0
     },
-    { 
-      id: 2, 
-      text: "Click if you hate me 🥺", 
-      icon: "💔", 
+    {
+      id: 2,
+      text: "Click if you hate me 🥺",
+      icon: "💔",
       theme: "card-hate",
       message: "Oh no! Even when you're mad, you're the most beautiful person in the world. 🥺",
       subtext: "Can I earn a tiny smile back?",
-      actionText: "Let our memories melt the silence away...",
-      mood: "funny"
+      actionText: "Let our memories melt the silence...",
+      startIndex: 0
     },
-    { 
-      id: 3, 
-      text: "Click if you're hungry 🍕", 
-      icon: "😋", 
+    {
+      id: 3,
+      text: "Click if you're hungry 🍕",
+      icon: "😋",
       theme: "card-hungry",
       message: "Virtual Menu for my Queen: 🍕 Infinite Kisses, 🍫 Warm Hugs, 🌹 A real date night.",
       subtext: "What are we ordering tonight?",
-      actionText: "A banquet of our best moments awaits...",
-      mood: "vacation"
+      actionText: "A banquet of our best moments...",
+      startIndex: 0
     },
-    { 
-      id: 4, 
-      text: "Click if you're upset with me 😔", 
-      icon: "🌹", 
+    {
+      id: 4,
+      text: "Click if you're upset with me 😔",
+      icon: "🌹",
       theme: "card-upset",
       message: "I'm sorry for being silly. Here is a flower for the flower of my life. 🌹",
       subtext: "You're too precious to be upset with.",
-      actionText: "Let's find our sunshine in these pages...",
-      mood: "cute"
+      actionText: "Let's find our sunshine together...",
+      startIndex: 0
     },
-    { 
-      id: 5, 
-      text: "Click if you want to go for a long drive 🚗", 
-      icon: "✨", 
+    {
+      id: 5,
+      text: "Click if you want to go for a long drive 🚗",
+      icon: "✨",
       theme: "card-drive",
       message: "Pack your bags in your mind! We’re heading to the stars tonight. 🚗✨",
       subtext: "Buckle up, Buttercup! Our destination is happiness.",
-      actionText: "Start the engine of our memory lane...",
-      mood: "magic"
+      actionText: "Start the engine of our journey...",
+      startIndex: 0
     },
-    { 
-      id: 6, 
-      text: "Click if you're missing me right now 🫂", 
-      icon: "💌", 
+    {
+      id: 6,
+      text: "Click if you're missing me right now 🫂",
+      icon: "💌",
       theme: "card-missing",
       message: "Close your eyes... I'm sending a warm hug right through the screen. 🫂",
       subtext: "I'm missing you even more than you think.",
-      actionText: "Touch me to feel our hearts beat as one...",
-      mood: "all"
+      actionText: "Feel our hearts beat as one...",
+      startIndex: 0
     }
   ];
 
@@ -95,6 +95,13 @@ const Dashboard = () => {
   };
 
   const [logoutStep, setLogoutStep] = useState(0);
+
+  const handleOpenGallery = (feeling) => {
+    // Navigate to gallery with the corresponding starting image for that mood
+    let index = 0;
+
+    navigate("/gallery", { state: { startIndex: index } });
+  };
 
   const handleLogoutClick = () => {
     setLogoutStep(1);
@@ -161,19 +168,20 @@ const Dashboard = () => {
         </div>
       )}
       <div className="dashboard-header">
-        <h1>Welcome, My Dear!</h1>
+        <h1>Baby, Welcome to my world❤️</h1>
         <p>Choose a card to express your feelings...</p>
       </div>
 
       <div className="dashboard-grid">
         {greetingCards.map((card) => (
-          <div 
-            key={card.id} 
+          <div
+            key={card.id}
             className={`greeting-card ${card.theme}`}
             onClick={() => handleCardClick(card)}
           >
             <div className="card-icon">{card.icon}</div>
             <h3>{card.text}</h3>
+            <button className="small-heart-btn">Open ❤️</button>
           </div>
         ))}
       </div>
@@ -186,9 +194,9 @@ const Dashboard = () => {
             <div className="modal-icon">{selectedCard.icon}</div>
             <h2 className="modal-message">{selectedCard.message}</h2>
             <p className="modal-subtext">{selectedCard.subtext}</p>
-            <button 
-              className="modal-action-btn" 
-              onClick={() => navigate("/gallery", { state: { mood: selectedCard.mood } })}
+            <button
+              className="modal-action-btn"
+              onClick={() => navigate("/gallery", { state: { startIndex: selectedCard.startIndex } })}
             >
               {selectedCard.actionText}
             </button>

@@ -115,29 +115,37 @@ function LoginForm() {
         return;
       }
 
-      const detections = await window.faceapi.detectAllFaces(videoRef.current, new window.faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+      const detections = await window.faceapi.detectAllFaces(
+        videoRef.current, 
+        new window.faceapi.TinyFaceDetectorOptions()
+      ).withFaceExpressions();
 
       if (detections.length > 0) {
         const expressions = detections[0].expressions;
-        if (expressions.happy > 0.7) {
+        // More sensitive threshold (0.6) for real-time feel
+        if (expressions.happy > 0.6) {
           setSmileStatus("detected");
           clearInterval(interval);
-          stopCamera();
-          setIsCameraOpen(false);
-          performLogin();
+          setTimeout(() => {
+            stopCamera();
+            setIsCameraOpen(false);
+            performLogin();
+          }, 800); // Slightly longer pause for effect
+        } else {
+          setSmileStatus("scanning");
         }
       }
-    }, 500);
+    }, 100); // 100ms for real-time feel
 
     // Timeout if no smile detected
     setTimeout(() => {
       if (smileStatus === "scanning") {
         setSmileStatus("error");
-        setError("First please smile? 😊");
+        setError("Please show me a bigger smile? 😊");
         stopCamera();
         setIsCameraOpen(false);
       }
-    }, 10000);
+    }, 12000); // Slightly longer timeout for better experience
   };
 
   const stopCamera = () => {
@@ -179,7 +187,7 @@ function LoginForm() {
         <div className="camera-overlay">
           <div className="camera-content">
             <h3>Smile to Open My Heart</h3>
-            <div className="video-container">
+            <div className={`video-container ${smileStatus === "scanning" ? "scanning-active" : ""}`}>
               <video 
                 ref={videoRef} 
                 autoPlay 
@@ -188,13 +196,25 @@ function LoginForm() {
                 style={{ width: '100%', borderRadius: '20px' }}
               />
               <div className="scan-line"></div>
+              {smileStatus === "scanning" && <div className="scanning-heart-pulse">❤️</div>}
             </div>
-            <p className={smileStatus === "error" ? "status-error" : ""}>
-              {smileStatus === "scanning" ? "Scanning for your beautiful smile..." : ""}
-              {smileStatus === "detected" ? "Smile detected! ❤️" : ""}
-              {smileStatus === "error" ? "First please smile? 😊" : ""}
-            </p>
-            <button onClick={() => { stopCamera(); setIsCameraOpen(false); }}>Cancel</button>
+            <div className="status-container">
+              {smileStatus === "scanning" && (
+                <p className="scanning-text">Scanning for your beautiful smile...</p>
+              )}
+              {smileStatus === "detected" && (
+                <div className="success-message">
+                  <span className="heart-icon">❤️</span>
+                  <p>I love that smile!</p>
+                </div>
+              )}
+              {smileStatus === "error" && (
+                <p className="status-error">Please show me a bigger smile? 😊</p>
+              )}
+            </div>
+            <button className="camera-cancel-btn" onClick={() => { stopCamera(); setIsCameraOpen(false); }}>
+              Cancel
+            </button>
           </div>
         </div>
       )}

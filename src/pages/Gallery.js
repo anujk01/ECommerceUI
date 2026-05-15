@@ -163,7 +163,22 @@ const Gallery = () => {
         ) : (
           <>
             <div className="story-header">
-              <div className="story-progress">
+              <div 
+                className="story-progress" 
+                onClick={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const newIndex = Math.floor((x / rect.width) * journeyPhotos.length);
+                  if (newIndex >= 0 && newIndex < journeyPhotos.length) {
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                      setCurrentIndex(newIndex);
+                      setIsTransitioning(false);
+                    }, 300);
+                  }
+                }}
+                style={{ cursor: 'pointer' }}
+              >
                 <div 
                   className="progress-bar-inner" 
                   style={{ width: `${((currentIndex + 1) / journeyPhotos.length) * 100}%` }}

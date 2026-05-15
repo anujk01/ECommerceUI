@@ -1,14 +1,16 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import LoginForm from "./components/LoginForm";
 import Dashboard from "./pages/Dashboard";
 import AddUser from "./pages/AddUser";
+import Gallery from "./pages/Gallery";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/login" replace />,
+    element: <LandingPage />,
   },
   {
     path: "/login",
@@ -31,8 +33,16 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/gallery",
+    element: (
+      <ProtectedRoute>
+        <Gallery />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "*",
-    element: <Navigate to="/login" replace />,
+    element: <Navigate to="/" replace />,
   },
 ]);
 

@@ -1,15 +1,163 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Sacramento&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Landing Page Styles */
+.landing-page {
+  min-height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 100%);
+  pointer-events: none;
+}
+
+.landing-heart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.landing-heart-container:hover {
+  transform: scale(1.1);
+}
+
+.big-heart {
+  font-size: 80px;
+  color: #e11d48;
+  filter: drop-shadow(0 0 15px rgba(225, 29, 72, 0.6));
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.landing-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 1px;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 25px rgba(225, 29, 72, 0.8)); }
+  100% { transform: scale(1); }
+}
+
+/* Dashboard Grid */
 .romantic-dashboard {
   min-height: 100vh;
   background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  padding: 80px 20px 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  z-index: 10;
+}
+
+.dashboard-header h1 {
+  font-family: 'Playfair Display', serif;
+  color: #9f1239;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-header p {
+  color: #e11d48;
+  font-style: italic;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1000px;
+  z-index: 10;
+}
+
+.greeting-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Outfit', sans-serif;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
+.greeting-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(225, 29, 72, 0.15);
+  border-color: #fecaca;
+  background: #ffffff;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.greeting-card:hover .card-icon {
+  transform: scale(1.2);
+}
+
+.greeting-card h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  color: #4c0519;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Card Themes */
+.card-love { border-bottom: 5px solid #e11d48; }
+.card-hate { border-bottom: 5px solid #475569; }
+.card-hungry { border-bottom: 5px solid #f97316; }
+.card-upset { border-bottom: 5px solid #8b5cf6; }
+.card-drive { border-bottom: 5px solid #10b981; }
+.card-missing { border-bottom: 5px solid #ec4899; }
+
+/* Floating Hearts Animation */
 .floating-hearts {
   position: absolute;
   top: 0;
@@ -34,90 +182,344 @@
   100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
 }
 
-.romantic-content {
-  z-index: 2;
-  text-align: center;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-}
-
-.romantic-image {
-  width: 300px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 8px solid white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
-}
-
-.romantic-dashboard h1 {
-  color: #e11d48;
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-}
-
-.emojis {
-  font-size: 3rem;
-  margin-bottom: 24px;
-}
-
-.add-user-icon-container {
-  position: absolute;
-  bottom: 40px;
-  cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  z-index: 10;
-}
-
-.add-user-icon-container:hover {
-  transform: scale(1.2);
-}
-
-.add-user-icon {
-  background: #fb7185;
-  color: white;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+/* Romantic Modal Styles */
+.romantic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(225, 29, 72, 0.15);
+  backdrop-filter: blur(15px);
+  z-index: 2000;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 8px 16px rgba(251, 113, 133, 0.4);
+  animation: modalFadeIn 0.4s ease-out;
 }
 
-.tooltip {
+.romantic-modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 40px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(225, 29, 72, 0.2);
+  border: 2px solid #fff1f2;
+  animation: modalPopUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalPopUp {
+  from { transform: scale(0.8) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
   position: absolute;
-  bottom: 80px;
-  background: #333;
+  top: 15px;
+  right: 15px;
+  font-size: 1.2rem;
+  background: #fff1f2;
+  border: 2px solid #ffe4e6;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #e11d48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2001;
+}
+
+.modal-close-btn:hover {
+  background: #e11d48;
+  color: #fff;
+  transform: rotate(180deg) scale(1.1);
+}
+
+.modal-icon {
+  font-size: 5rem;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+  animation: modalHeartbeat 1.5s infinite ease-in-out;
+}
+
+@keyframes modalHeartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.modal-message {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #4c0519;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.modal-subtext {
+  font-family: 'Outfit', sans-serif;
+  color: #e11d48;
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+.modal-action-btn {
+  background: linear-gradient(135deg, #e11d48 0%, #fb7185 100%);
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  white-space: nowrap;
+  border: none;
+  padding: 30px 20px;
+  width: 160px;
+  height: 140px;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(225, 29, 72, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  clip-path: path('M80 26C80 26 73.5 0 40 0C18 0 0 18 0 40C0 74.6 40 105.3 80 134.6C120 105.3 160 74.6 160 40C160 18 142 0 120 0C86.5 0 80 26 80 26Z');
+}
+
+.modal-action-btn:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 20px 45px rgba(225, 29, 72, 0.4);
+}
+
+/* Gallery Styles */
+.gallery-page {
+  padding-top: 100px;
+}
+
+.back-to-cards-btn {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  padding: 12px 24px;
+  background: white;
+  border: 2px solid #fecaca;
+  border-radius: 20px;
+  color: #e11d48;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(225, 29, 72, 0.1);
+  z-index: 100;
+}
+
+.back-to-cards-btn:hover {
+  background: #fff1f2;
+  transform: translateX(-5px);
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.15);
+}
+
+.back-to-cards-btn::before {
+  content: '❤️';
+  font-size: 1rem;
+}
+
+.mood-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 10;
+}
+
+.mood-tab {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 2px solid white;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  color: #4c0519;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mood-tab.active {
+  background: #e11d48;
+  color: white;
+  border-color: #e11d48;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 1200px;
+  z-index: 10;
+}
+
+.gallery-card {
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: white;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-card:hover {
+  transform: scale(1.05);
+}
+
+.photo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 25px;
   opacity: 0;
   transition: opacity 0.3s;
 }
 
-.add-user-icon-container:hover .tooltip {
+.gallery-card:hover .photo-overlay {
   opacity: 1;
 }
 
-.logout-btn-top {
+.photo-overlay p {
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+}
+
+/* Romantic Logout Button */
+.romantic-logout-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: white;
+  top: 25px;
+  right: 25px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1.5px dashed #fda4af;
+  border-radius: 15px;
+  color: #9f1239;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.romantic-logout-btn:hover {
+  background: #ffe4e6;
+  border-style: solid;
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.1);
+  color: #e11d48;
+}
+
+.romantic-logout-btn:active {
+  transform: scale(0.95);
+}
+
+.romantic-logout-btn::after {
+  content: '💔';
+  font-size: 1rem;
+}
+
+.logout-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.logout-yes-btn {
+  background: transparent;
+  border: 1px solid #fecaca;
+  color: #9f1239;
+  padding: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+}
+
+.logout-yes-btn:hover {
+  background: #fff1f2;
+  border-color: #fda4af;
+}
+
+.logout-no-btn {
+  background: linear-gradient(135deg, #e11d48 0%, #fb7185 100%);
+  color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 12px;
+  padding: 15px;
+  border-radius: 15px;
   cursor: pointer;
   font-weight: 600;
-  color: #e11d48;
-  z-index: 10;
+  font-family: 'Outfit', sans-serif;
+  box-shadow: 0 10px 20px rgba(225, 29, 72, 0.2);
+  transition: all 0.3s;
+}
+
+.logout-no-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(225, 29, 72, 0.3);
+}
+
+.logout-progress {
+  margin-top: 25px;
+  font-size: 0.8rem;
+  color: #fda4af;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .dashboard-header h1 { font-size: 2rem; }
+  .mood-tabs { gap: 10px; }
+  .mood-tab { padding: 8px 16px; font-size: 0.9rem; }
 }

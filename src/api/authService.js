@@ -14,8 +14,14 @@ export async function login(username, password) {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(errorText || "Login failed");
+    let errorMessage = "Login failed";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorData.error || JSON.stringify(errorData);
+    } catch (e) {
+      errorMessage = await response.text() || response.statusText;
+    }
+    throw new Error(errorMessage);
   }
   return await response.json(); // This should include the JWT token
 }

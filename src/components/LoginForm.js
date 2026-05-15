@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../api/authService";
 import "../styles/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
 function LoginForm() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("anuj");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +18,11 @@ function LoginForm() {
   const [hearts, setHearts] = useState([]);
   const [staticHearts, setStaticHearts] = useState([]);
   const [bgQuotes, setBgQuotes] = useState([]);
-  const navigate = useNavigate();
+
+  // If someone tries to access /login directly without clicking the heart
+  if (!location.state?.allowed) {
+    return <Navigate to="/" replace />;
+  }
 
   useEffect(() => {
     // Load face-api models

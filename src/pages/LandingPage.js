@@ -7,7 +7,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const handleHeartClick = () => {
-    navigate("/login");
+    navigate("/login", { state: { allowed: true } });
   };
 
   return (

@@ -19,19 +19,37 @@ const Gallery = () => {
 
   const currentPhoto = journeyPhotos[currentIndex];
 
+  // Preload images for a faster experience
+  useEffect(() => {
+    const preloadImages = () => {
+      const nextIndex = currentIndex + 1;
+      const prevIndex = currentIndex - 1;
+      
+      const toPreload = [];
+      if (nextIndex < journeyPhotos.length) toPreload.push(journeyPhotos[nextIndex].fileName);
+      if (prevIndex >= 0) toPreload.push(journeyPhotos[prevIndex].fileName);
+
+      toPreload.forEach(fileName => {
+        const img = new Image();
+        img.src = require(`../assets/${fileName}`);
+      });
+    };
+    preloadImages();
+  }, [currentIndex]);
+
   const handleNext = () => {
     if (currentIndex < journeyPhotos.length - 1) {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentIndex(prev => prev + 1);
         setIsTransitioning(false);
-      }, 500);
+      }, 300);
     } else {
       setIsTransitioning(true);
       setTimeout(() => {
         setShowThankYou(true);
         setIsTransitioning(false);
-      }, 500);
+      }, 300);
     }
   };
 
@@ -41,7 +59,7 @@ const Gallery = () => {
       setCurrentIndex(0);
       setShowThankYou(false);
       setIsTransitioning(false);
-    }, 500);
+    }, 300);
   };
 
   const handleBack = () => {
@@ -50,7 +68,7 @@ const Gallery = () => {
       setTimeout(() => {
         setCurrentIndex(prev => prev - 1);
         setIsTransitioning(false);
-      }, 500);
+      }, 300);
     }
   };
 
